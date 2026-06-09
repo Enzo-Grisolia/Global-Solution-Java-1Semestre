@@ -16,9 +16,9 @@ Esta API é o **back-end** do ecossistema: gerencia produtores, propriedades, le
 
 ## Equipe (3SIR)
 
-- Enzo Grisolia de Souza
-- Gabriel Borges Medeiros
-- Matheus Lion Muzzi
+- Enzo Grisolia de Souza RM555706
+- Gabriel Borges Medeiros RM556142
+- Matheus Lion Muzzi Theodoro Nogueira RM555764
 
 ---
 
