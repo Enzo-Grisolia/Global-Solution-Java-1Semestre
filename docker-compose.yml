@@ -1,0 +1,36 @@
+services:
+
+  # Banco de dados MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: agroorbit-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pwd
+      MYSQL_DATABASE: agroorbit
+    ports:
+      - "3306:3306"
+    volumes:
+      - agroorbit_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot_pwd"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # API AgroOrbit Core (Spring Boot)
+  api:
+    build: .
+    container_name: agroorbit-api
+    ports:
+      - "9000:9000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      # Aponta o datasource para o container do MySQL (host "mysql")
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/agroorbit?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root_pwd
+
+volumes:
+  agroorbit_mysql_data:

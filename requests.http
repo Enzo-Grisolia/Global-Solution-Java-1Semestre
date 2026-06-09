@@ -1,0 +1,156 @@
+### ============================================================
+### AgroOrbit Core API - Exemplos de requisicoes
+### Use a extensao "REST Client" do VS Code, ou copie para o Postman/Insomnia.
+### Base: http://localhost:9000/api/v2
+### ============================================================
+
+@host = http://localhost:9000/api/v2
+
+### ---------- PRODUTORES ----------
+
+### Criar produtor
+POST {{host}}/produtores
+Content-Type: application/json
+
+{
+  "nome": "João Pereira",
+  "cpf": "12345678901",
+  "telefone": "44999990000",
+  "cooperativa": "Coamo",
+  "ativo": true
+}
+
+### Listar produtores
+GET {{host}}/produtores
+
+### Buscar produtor por id
+GET {{host}}/produtores/1
+
+### Atualizar produtor
+PUT {{host}}/produtores/1
+Content-Type: application/json
+
+{
+  "nome": "João Pereira da Silva",
+  "cpf": "12345678901",
+  "telefone": "44999990000",
+  "cooperativa": "Coamo",
+  "ativo": true
+}
+
+### Remover produtor
+DELETE {{host}}/produtores/1
+
+
+### ---------- PROPRIEDADES ----------
+
+### Criar propriedade (precisa de um produtorId existente)
+POST {{host}}/propriedades
+Content-Type: application/json
+
+{
+  "nome": "Fazenda Boa Vista",
+  "areaHectares": 120.0,
+  "culturaPrincipal": "Soja",
+  "latitude": -24.9555,
+  "longitude": -53.4552,
+  "produtorId": 1
+}
+
+### Listar propriedades
+GET {{host}}/propriedades
+
+### Buscar propriedade por id
+GET {{host}}/propriedades/1
+
+### Atualizar propriedade
+PUT {{host}}/propriedades/1
+Content-Type: application/json
+
+{
+  "nome": "Fazenda Boa Vista II",
+  "areaHectares": 150.0,
+  "culturaPrincipal": "Milho",
+  "latitude": -24.9555,
+  "longitude": -53.4552,
+  "produtorId": 1
+}
+
+### Remover propriedade
+DELETE {{host}}/propriedades/1
+
+
+### ---------- LEITURAS DE SATELITE ----------
+
+### Criar leitura (precisa de uma propriedadeId existente)
+POST {{host}}/leituras
+Content-Type: application/json
+
+{
+  "data": "2026-05-28",
+  "ndvi": 0.72,
+  "temperaturaSolo": 24.5,
+  "umidade": 61.0,
+  "fonteSatelite": "Sentinel-2",
+  "propriedadeId": 1
+}
+
+### Listar leituras
+GET {{host}}/leituras
+
+### Buscar leitura por id
+GET {{host}}/leituras/1
+
+### Atualizar leitura
+PUT {{host}}/leituras/1
+Content-Type: application/json
+
+{
+  "data": "2026-05-29",
+  "ndvi": 0.70,
+  "temperaturaSolo": 25.0,
+  "umidade": 58.0,
+  "fonteSatelite": "Sentinel-2",
+  "propriedadeId": 1
+}
+
+### Remover leitura
+DELETE {{host}}/leituras/1
+
+
+### ---------- ALERTAS CLIMATICOS ----------
+
+### Criar alerta (precisa de uma propriedadeId existente)
+POST {{host}}/alertas
+Content-Type: application/json
+
+{
+  "tipoAlerta": "Risco de geada",
+  "severidade": "ALTA",
+  "descricao": "Mínima prevista de 2°C nas próximas 48h.",
+  "dataGeracao": "2026-05-28",
+  "status": "ATIVO",
+  "propriedadeId": 1
+}
+
+### Listar alertas
+GET {{host}}/alertas
+
+### Buscar alerta por id
+GET {{host}}/alertas/1
+
+### Atualizar alerta
+PUT {{host}}/alertas/1
+Content-Type: application/json
+
+{
+  "tipoAlerta": "Risco de geada",
+  "severidade": "MEDIA",
+  "descricao": "Risco reduzido após nova leitura.",
+  "dataGeracao": "2026-05-28",
+  "status": "RESOLVIDO",
+  "propriedadeId": 1
+}
+
+### Remover alerta
+DELETE {{host}}/alertas/1

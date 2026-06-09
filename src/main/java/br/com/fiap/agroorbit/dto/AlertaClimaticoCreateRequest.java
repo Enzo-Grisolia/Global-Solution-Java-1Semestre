@@ -1,0 +1,74 @@
+package br.com.fiap.agroorbit.dto;
+
+import java.time.LocalDate;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+
+public class AlertaClimaticoCreateRequest {
+
+    @NotBlank(message = "O tipo do alerta é obrigatório")
+    private String tipoAlerta;
+
+    @NotBlank(message = "A severidade é obrigatória")
+    private String severidade;
+
+    private String descricao;
+
+    @NotNull(message = "A data de geração é obrigatória")
+    private LocalDate dataGeracao;
+
+    private String status;
+
+    @NotNull(message = "O id da propriedade é obrigatório")
+    private Long propriedadeId;
+
+    public String getTipoAlerta() {
+        return tipoAlerta;
+    }
+
+    public void setTipoAlerta(String tipoAlerta) {
+        this.tipoAlerta = tipoAlerta;
+    }
+
+    public String getSeveridade() {
+        return severidade;
+    }
+
+    public void setSeveridade(String severidade) {
+        this.severidade = severidade;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public LocalDate getDataGeracao() {
+        return dataGeracao;
+    }
+
+    public void setDataGeracao(LocalDate dataGeracao) {
+        this.dataGeracao = dataGeracao;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Long getPropriedadeId() {
+        return propriedadeId;
+    }
+
+    public void setPropriedadeId(Long propriedadeId) {
+        this.propriedadeId = propriedadeId;
+    }
+}
